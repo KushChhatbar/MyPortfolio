@@ -461,10 +461,10 @@ Here is the content of this css file
 
 /* Quote */
 .lx-quote{
-	margin-top:60px;
-	padding:25px;
+	margin-top:40px;
+	padding:10px;
 	background:#FBFBFB;
-	border-left:10px solid #0099cc;
+	border-left:5px solid #0099cc;
 }
 .lx-quote h4{
 	margin-bottom:10px;
@@ -473,11 +473,13 @@ Here is the content of this css file
 }
 .lx-quote p{
 	margin:0px;
+    margin-right:-270px;
 	font-size:16px;
 }
 .lx-quote em{
 	display:block;
 	margin-top:10px;
+    margin-right:-262px;
 	font-size:16px;
 	text-align:right;
 	color:#999999;
