@@ -192,15 +192,15 @@ Here is the content of this css file
 }
 .lx-month{
 	font-size:37px;
-	line-height:30px;
+	line-height:40px;
 }
 .lx-day{
 	font-size:60px;
-	line-height:40px;
+	line-height:50px;
 }
 .lx-year{
 	font-size:30px;
-	line-height:30px;
+	line-height:40px;
 }
 .lx-time{
 	font-size:18px;
@@ -859,7 +859,7 @@ Here is the content of this css file
 	font-size:20px;
 }
 .lx-contact form p{
-	margin:20px 0px 60px;
+	margin:20px 0px 30px;
 }
 .lx-contact-saved > div{
 	margin-bottom:20px;
