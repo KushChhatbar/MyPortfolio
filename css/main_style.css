@@ -294,7 +294,7 @@ Here is the content of this css file
 	}
 }
 .lx-home-overview h1{
-	font-size:50px;
+	font-size:68px;
 	font-family:'Roboto Slab';
 	border-bottom:1px solid #FFFFFF;
 }
@@ -305,8 +305,8 @@ Here is the content of this css file
 }
 .lx-home-overview em{
 	display:block;
-	font-size:20px;
-	font-family:'Courgette';
+	font-size:25px;
+	font-family:'';/*Courgette*/
 	text-align:right;
 	color:EEEEEE;
 }
