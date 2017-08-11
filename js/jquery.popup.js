@@ -4,13 +4,26 @@
 var nbpics;
 var currentpic;
 var popup = $(".lx-popup");
-var popupImg = $(".lx-popup-image img");
+var popupImg = $(".lx-popup-image > img");
 var popupTitle = $(".lx-popup-details ul li:eq(0) span");
 var popupCpic = $(".lx-popup-details ul li:eq(1) span");
 var popupInfo = $(".lx-popup-infos");
-
+var slideSize = $(".lx-popup-image").outerWidth();
+var infoSize = $(".lx-popup-infos").outerWidth();
 // espand popup click event
 $("i.fa-search-plus", ".lx-projects").on("click",function() {
+	// Mini Slide Init
+	if($(window).width()  <= 768){
+		slideSize = $(window).width();
+		infoSize = $(window).width();
+	}
+	if($(".lx-mini-slide").length){
+		$(".lx-popup-infos").css({"width":infoSize+"px"});
+		$(".lx-popup-image").css({"width":slideSize+"px"});
+		$(".lx-mini-slide-nav").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul li").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul").css({"-webkit-transition":"all 0s","transition":"all 0s","left":"-"+slideSize+"px"});		
+	}
     // set nbpics to 0
     nbpics = 0;
     // get the number of pictures
@@ -25,7 +38,15 @@ $("i.fa-search-plus", ".lx-projects").on("click",function() {
     // get current picture number
     currentpic = $(this).parent().attr("data");
     // transmit information to the popup
-    popupImg.attr("src", $(this).parent().find("img").attr("src"));
+	if($(this).parent().find(".lx-mini-slide").length){
+		popupImg.css("display","none");
+		popupImg.parent().find(".lx-mini-slide").remove();
+		popupImg.parent().append('<div class="lx-mini-slide">'+$(this).parent().find(".lx-mini-slide").html()+'</div>')
+	}
+	else{
+		popupImg.css("display","block");
+		popupImg.attr("src", $(this).parent().find("img").attr("src"));
+	}
 	window.setTimeout(function(){
 		popupImg.css("transform", "scale(1)");
 	},1);
@@ -49,6 +70,14 @@ $("i.fa-search-plus", ".lx-projects").on("click",function() {
 
 // popup left arrow click event
 $(".lx-popup-inside a .fa-caret-left", ".lx-popup").on("click",function() {
+	// Mini Slide Init
+	if($(".lx-mini-slide").length){
+		$(".lx-popup-infos").css({"width":infoSize+"px"});
+		$(".lx-popup-image").css({"width":slideSize+"px"});
+		$(".lx-mini-slide-nav").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul li").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul").css({"-webkit-transition":"all 0s","transition":"all 0s","left":"-"+slideSize+"px"});		
+	}
     // test if the curent picture is equal to 1 or not
     if (currentpic === 1) {
         currentpic = nbpics;
@@ -56,7 +85,16 @@ $(".lx-popup-inside a .fa-caret-left", ".lx-popup").on("click",function() {
         currentpic = parseInt(currentpic) - 1;
     }
     // transmit information to the popup
-    popupImg.attr("src", $(".lx-projects-item[data='" + currentpic + "'] img", ".lx-projects").attr("src"));
+    
+	if($(".lx-projects-item[data='" + currentpic + "']", ".lx-projects").find(".lx-mini-slide").length){
+		popupImg.css("display","none");
+		popupImg.parent().find(".lx-mini-slide").remove();
+		popupImg.parent().append('<div class="lx-mini-slide">'+$(".lx-projects-item[data='" + currentpic + "']", ".lx-projects").find(".lx-mini-slide").html()+'</div>')
+	}
+	else{
+		popupImg.css("display","block");
+		popupImg.attr("src", $(".lx-projects-item[data='" + currentpic + "'] img", ".lx-projects").attr("src"));
+	}
 	var info = "<h3>" + $(".lx-projects-item[data='" + currentpic + "'] h4", ".lx-projects").text() + "</h3>";
 	$(".lx-projects-item[data='" + currentpic + "'] input[type='hidden']", ".lx-projects").each(function(){
 		if($(this).attr("data-type") == "paragraph"){
@@ -74,6 +112,14 @@ $(".lx-popup-inside a .fa-caret-left", ".lx-popup").on("click",function() {
 
 // popup right arrow click event
 $(".lx-popup-inside a .fa-caret-right", ".lx-popup").on("click",function() {
+	// Mini Slide Init
+	if($(".lx-mini-slide").length){
+		$(".lx-popup-infos").css({"width":infoSize+"px"});
+		$(".lx-popup-image").css({"width":slideSize+"px"});
+		$(".lx-mini-slide-nav").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul li").css({"width":slideSize+"px"});
+		$(".lx-mini-slide ul").css({"-webkit-transition":"all 0s","transition":"all 0s","left":"-"+slideSize+"px"});		
+	}
     // test if the current picture is equal to the number pictures or not
     if (currentpic === nbpics) {
         currentpic = 1;
@@ -81,7 +127,15 @@ $(".lx-popup-inside a .fa-caret-right", ".lx-popup").on("click",function() {
         currentpic = parseInt(currentpic) + 1;
     }
     // transmit information to the popup
-    popupImg.attr("src", $(".lx-projects-item[data='" + currentpic + "'] img", ".lx-projects").attr("src"));
+	if($(".lx-projects-item[data='" + currentpic + "']", ".lx-projects").find(".lx-mini-slide").length){
+		popupImg.css("display","none");
+		popupImg.parent().find(".lx-mini-slide").remove();
+		popupImg.parent().append('<div class="lx-mini-slide">'+$(".lx-projects-item[data='" + currentpic + "']", ".lx-projects").find(".lx-mini-slide").html()+'</div>')
+	}
+	else{
+		popupImg.css("display","block");
+		popupImg.attr("src", $(".lx-projects-item[data='" + currentpic + "'] img", ".lx-projects").attr("src"));
+	}
 	var info = "<h3>" + $(".lx-projects-item[data='" + currentpic + "'] h4", ".lx-projects").text() + "</h3>";
 	$(".lx-projects-item[data='" + currentpic + "'] input[type='hidden']", ".lx-projects").each(function(){
 		if($(this).attr("data-type") == "paragraph"){
